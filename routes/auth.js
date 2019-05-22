@@ -6,21 +6,13 @@ const bcrypt = require('bcrypt');
 
 const User = require('../models/user');
 
-const {
-  isLoggedIn,
-  isNotLoggedIn,
-  validationLoggin,
-} = require('../helpers/middlewares');
+const {isLoggedIn, isNotLoggedIn, validationLoggin,} = require('../helpers/middlewares');
 
 router.get('/me', isLoggedIn(), (req, res, next) => {
   res.json(req.session.currentUser);
 });
 
-router.post(
-  '/login',
-  isNotLoggedIn(),
-  validationLoggin(),
-  async (req, res, next) => {
+router.post('/login', isNotLoggedIn(), validationLoggin(), async (req, res, next) => {
     const { username, password } = req.body;
     try {
       const user = await User.findOne({ username });
