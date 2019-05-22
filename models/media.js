@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const mediaSchema = new Schema ({
   type: String, enum:['song', 'video'],
@@ -8,7 +9,10 @@ const mediaSchema = new Schema ({
   description: String,
   year: Number,
   month: Number,
-  owner: String
+  owner:  [{
+    type: ObjectId,
+    ref: 'User'
+}]
 });
 
 const Media = mongoose.model('Model' , mediaSchema);
