@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const mediaSchema = new Schema ({
-  type: ENUM ['song', 'video'],
+  type: String, enum:['song', 'video'],
   url: String,
   title: String,
   description: String,
