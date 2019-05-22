@@ -19,6 +19,7 @@ router.get('/:userid', isLoggedIn(), (req, res, next) => {
 router.post('/', isLoggedIn(), (req, res, next) => {
   const { id } = req.body;
   const userId = req.session.currentUser;
+  console.log('id', favorites);
   User.findByIdAndUpdate(userId, {$set: id}, {new: true})
     .then((user) => res.json(user))
 })

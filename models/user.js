@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const userSchema = new Schema({
   username: String,
@@ -9,8 +10,11 @@ const userSchema = new Schema({
   picture: String,
   instruments: String,
   genres: String,
-  favorites: [],
-  media: []
+  media: [],
+  favorites: [{
+    type: ObjectId,
+    ref: 'User'
+  }]
 }, {
   timestamps: {
     createdAt: 'created_at',
