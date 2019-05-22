@@ -8,7 +8,7 @@ const mediaSchema = new Schema ({
   description: String,
   year: Number,
   month: Number,
-  owner: userId
+  owner: String
 });
 
 const Media = mongoose.model('Model' , mediaSchema);

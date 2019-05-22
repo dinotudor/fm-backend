@@ -4,9 +4,8 @@ const createError = require('http-errors');
 const router = express.Router();
 
 const User = require('../models/user');
-//const Media = require('../models/media');
 
-//MIDDLEWARE functions
+//MIDDLEWARE helper functions
 const {isLoggedIn, isNotLoggedIn, validationLoggin,} = require('../helpers/middlewares');
 
 //GET PROFILE
