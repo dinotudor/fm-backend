@@ -9,5 +9,18 @@ const User = require('../models/user');
 //MIDDLEWARE functions
 const {isLoggedIn, isNotLoggedIn, validationLoggin,} = require('../helpers/middlewares');
 
+//GET users favorite
+router.get('/:userid', isLoggedIn(), (req, res, next) => {
+
+
+})
+
+//POST add users favorite
+router.post('/', isLoggedIn(), (req, res, next) => {
+  const { id } = req.body;
+  const userId = req.session.currentUser;
+  User.findByIdAndUpdate(userId, {$set: id}, {new: true})
+    .then((user) => res.json(user))
+})
 
 module.exports = router;
