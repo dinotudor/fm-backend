@@ -11,10 +11,7 @@ const userSchema = new Schema({
   instruments: String,
   genres: String,
   media: [],
-  favorites: [{
-    type: ObjectId,
-    ref: 'User'
-  }]
+  favorites: [{ type: ObjectId, ref: 'User'}]
 }, {
   timestamps: {
     createdAt: 'created_at',
