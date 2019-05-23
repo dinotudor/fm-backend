@@ -15,7 +15,7 @@ router.get('/', isLoggedIn(), (req, res, next) => {
     .catch((err) => console.log(err))
 })
 
-//GET PROFILE/:id
+//GET  'profile/:id' get all users
 router.get('/:id', isLoggedIn(),(req, res, next) => {
   const { id } = req.params;
   console.log(id)
@@ -25,6 +25,7 @@ router.get('/:id', isLoggedIn(),(req, res, next) => {
   .catch((err) => console.log(err))
 })
 
+//PUT '/edit'
 router.put('/edit', isLoggedIn(), (req, res, next) => {
   const { username, email, description, instruments, genres} = req.body;
   console.log(req.session.currentUser);
