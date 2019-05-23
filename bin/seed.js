@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./../models/user');
-const Medial = require('./../models/media');
+const Media = require('./../models/media');
 
 User.collection.drop();
 Media.collection.drop();
