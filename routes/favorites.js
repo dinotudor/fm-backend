@@ -22,7 +22,7 @@ router.post('/', isLoggedIn(), (req, res, next) => {
   .catch((err) => res.status(400).send(err))
 })
 
-//GET users favorite
+//GET '/favorites/:userId' gets all user favorites
 router.get('/:userId', isLoggedIn(),(req, res, next) => {
   const { userId } = req.params;
 
@@ -32,5 +32,15 @@ router.get('/:userId', isLoggedIn(),(req, res, next) => {
   .catch((err) => console.log(err))
 })
 
+router.delete('/:favoriteId', isLoggedIn(), (req,res,next) => {
+  const { favoriteId } = req.params;
+  const { _id } = req.session.currentUser;
+
+
+  User.findByIdAndUpdate(_id, { $pull: {favorites: favoriteId } }, {new: true})
+    .then((data) => res.json(data))
+    .catch((err)=>console.log(err))
+
+})
 
 module.exports = router;
