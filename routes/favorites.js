@@ -10,11 +10,6 @@ const User = require('../models/user');
 //MIDDLEWARE functions
 const {isLoggedIn, isNotLoggedIn, validationLoggin,} = require('../helpers/middlewares');
 
-/* //GET users favorite
-router.get('/:userid', isLoggedIn(), (req, res, next) => {
-
-
-}) */
 
 //  POST '/favorites'   add users favorite
 router.post('/', isLoggedIn(), (req, res, next) => {
@@ -23,8 +18,19 @@ router.post('/', isLoggedIn(), (req, res, next) => {
   let favId = mongoose.Types.ObjectId(favoriteId);
 
   User.findByIdAndUpdate(userId, { $push: { favorites: favId }} , {new: true})
-    .then((user) => res.json(user))
-    .catch((err) => res.status(400).send(err))
+  .then((user) => res.json(user))
+  .catch((err) => res.status(400).send(err))
 })
+
+//GET users favorite
+router.get('/:userId', isLoggedIn(),(req, res, next) => {
+  const { userId } = req.params;
+
+  User.findById(userId, 'favorites')
+  .populate('favorites')
+  .then((favorites) => res.json(favorites))
+  .catch((err) => console.log(err))
+})
+
 
 module.exports = router;
