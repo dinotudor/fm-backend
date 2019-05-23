@@ -10,7 +10,7 @@ const userSchema = new Schema({
   picture: String,
   instruments: String,
   genres: String,
-  media: [],
+  media: [{ type: ObjectId, ref: 'Media'}],
   favorites: [{ type: ObjectId, ref: 'User'}]
 }, {
   timestamps: {

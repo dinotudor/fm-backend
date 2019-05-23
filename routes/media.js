@@ -20,16 +20,51 @@ router.get('/', isLoggedIn(),(req, res, next) => {
   .catch((err) => console.log(err))
 })
 
+/* //POST '/media' add new media object to user
+router.post('/', isLoggedIn(), (req, res, next) => {
+
+  const { type, url, title, description, year} = req.body;
+  console.log(req.session.currentUser);
+
+  Media.create({type, url, title, description, year, owner: req.session.currentUser._id}, { new: true })
+   .then((media) => res.json(media))
+   .catch((err) => console.log(err))
+}) */
+
+// TEST MEDIA POPULATE USER
+
 //POST '/media' add new media object to user
 router.post('/', isLoggedIn(), (req, res, next) => {
 
   const { type, url, title, description, year} = req.body;
   console.log(req.session.currentUser);
 
-  Media.create({type, url, title, description, year, owner: req.session.currentUser._id})
-   .then((media) => res.json(media))
-   .catch((err) => console.log(err))
-})
+  Media.create({
+    type,
+    url,
+    title,
+    description,
+    year,
+    owner: req.session.currentUser._id
+  }, {
+    new: true
+  })
+    .then((newMedia) => {
+      console.log('NEW MEDIA',newMedia)
+      User.findByIdAndUpdate(req.session.currentUser._id, { $push: { media: newMedia[0]._id } }, { new: true })
+        .then((data) => {
+          console.log('DATA', data)
+          res
+            .status(201)
+            .json(data);
+        })
+        .catch((err) => {
+          res
+            .status(500)
+            .json(err)
+        })
+    })
+  })
 
 
 module.exports = router;
