@@ -31,7 +31,7 @@ router.get('/:userId', isLoggedIn(),(req, res, next) => {
   .then((favorites) => res.json(favorites))
   .catch((err) => console.log(err))
 })
-
+//DELETE '/favoriteId'
 router.delete('/:favoriteId', isLoggedIn(), (req,res,next) => {
   const { favoriteId } = req.params;
   const { _id } = req.session.currentUser;
