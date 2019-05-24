@@ -15,7 +15,7 @@ router.get('/', isLoggedIn(), (req, res, next) => {
     .catch((err) => console.log(err))
 })
 
-//GET  'profile/:id' get all users
+//GET  'profile/:id' get one user
 router.get('/:id', isLoggedIn(),(req, res, next) => {
   const { id } = req.params;
   console.log(id)
