@@ -8,7 +8,7 @@ const User = require('../models/user');
 //MIDDLEWARE helper functions
 const {isLoggedIn, isNotLoggedIn, validationLoggin,} = require('../helpers/middlewares');
 
-//GET PROFILE
+//GET PROFILES
 router.get('/', isLoggedIn(), (req, res, next) => {
   User.find({})
     .then((users) => res.json(users))
