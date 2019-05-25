@@ -1,5 +1,6 @@
 const express = require('express');
 const createError = require('http-errors');
+const parser = require('./../config/config');
 
 const router = express.Router();
 
@@ -32,5 +33,17 @@ router.put('/edit', isLoggedIn(), (req, res, next) => {
   User.findByIdAndUpdate(req.session.currentUser, {$set: req.body}, {new: true})
    .then((user) => res.json(user))
 })
+
+//POST Upload Image '/picture/
+router.post('/picture', parser.single('photo'), (req, res, next) => {
+  console.log('file upload');
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+  };
+  const image = req.file.secure_url;
+  res.json(image).status(200);
+});
+
+
 
 module.exports = router;
