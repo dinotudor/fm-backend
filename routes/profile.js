@@ -36,7 +36,7 @@ router.put('/edit', isLoggedIn(), (req, res, next) => {
 })
 
 //POST Upload Image '/picture/
-router.post('/picture', parser.single('photo'), (req, res, next) => {
+router.post('/edit', parser.single('photo'), (req, res, next) => {
   console.log('file upload');
   if (!req.file) {
     next(new Error('No file uploaded!'));
