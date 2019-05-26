@@ -7,7 +7,7 @@ const userSchema = new Schema({
   password: String,
   email: String,
   description: String,
-  picture: String,
+  image: String,
   instruments: String,
   genres: String,
   media: [{ type: ObjectId, ref: 'Media'}],
