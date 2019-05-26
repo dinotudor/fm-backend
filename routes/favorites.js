@@ -14,6 +14,8 @@ const {isLoggedIn, isNotLoggedIn, validationLoggin,} = require('../helpers/middl
 //  POST '/favorites'   add users favorite
 router.post('/', isLoggedIn(), (req, res, next) => {
   const { userId, favoriteId } = req.body;
+  console.log('USER ID', userId)
+  console.log('FAV ID', favoriteId)
 
   let favId = mongoose.Types.ObjectId(favoriteId);
 
