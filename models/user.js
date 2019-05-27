@@ -10,6 +10,7 @@ const userSchema = new Schema({
   image: String,
   instruments: String,
   genres: String,
+  city: String,
   media: [{ type: ObjectId, ref: 'Media'}],
   favorites: [{ type: ObjectId, ref: 'User'}]
 }, {

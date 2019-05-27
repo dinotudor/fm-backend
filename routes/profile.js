@@ -28,7 +28,7 @@ router.get('/:id', isLoggedIn(),(req, res, next) => {
 
 //PUT '/edit'
 router.put('/edit', isLoggedIn(), (req, res, next) => {
-  const { username, email, description, instruments, genres} = req.body;
+  const { username, email, description, instruments, genres, city} = req.body;
   console.log('req.body', req.body)
   console.log(req.session.currentUser);
   User.findByIdAndUpdate(req.session.currentUser, {$set: req.body}, {new: true})
