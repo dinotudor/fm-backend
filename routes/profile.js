@@ -12,7 +12,11 @@ const {isLoggedIn, isNotLoggedIn, validationLoggin,} = require('../helpers/middl
 //GET PROFILES
 router.get('/', isLoggedIn(), (req, res, next) => {
   User.find({})
-    .then((users) => res.json(users))
+    .populate('media')
+    .then((users) =>{
+      console.log(users)
+      res.json(users)
+    })
     .catch((err) => console.log(err))
 })
 
