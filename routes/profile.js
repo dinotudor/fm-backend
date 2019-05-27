@@ -26,17 +26,20 @@ router.get('/:id', isLoggedIn(),(req, res, next) => {
   console.log(id)
 
   User.findById(id)
+  .populate('media')
   .then((user) => res.json(user))
   .catch((err) => console.log(err))
 })
 
 //PUT '/edit'
 router.put('/edit', isLoggedIn(), (req, res, next) => {
-  const { username, email, description, instruments, genres, city} = req.body;
+  const { username, email, description, instruments, genres, city, image} = req.body;
   console.log('req.body', req.body)
   console.log(req.session.currentUser);
   User.findByIdAndUpdate(req.session.currentUser, {$set: req.body}, {new: true})
-   .then((user) => res.json(user))
+   .then((user) => {
+     req.session.currentUser = user
+     res.json(user)})
 })
 
 //POST Upload Image '/picture/
