@@ -33,7 +33,7 @@ router.get('/:id', isLoggedIn(),(req, res, next) => {
 
 //PUT '/edit'
 router.put('/edit', isLoggedIn(), (req, res, next) => {
-  const { username, email, description, instruments, genres, city, image, phone, facebook} = req.body;
+  const { username, description, instruments, genres, city, facebook, phone, email, image} = req.body;
   console.log(city, username);
   console.log('req.body', req.body)
   console.log(req.session.currentUser);

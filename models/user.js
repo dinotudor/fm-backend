@@ -4,15 +4,15 @@ const ObjectId = Schema.Types.ObjectId;
 
 const userSchema = new Schema({
   username: String,
-  password: String,
-  email: String,
   description: String,
-  image: String,
   instruments: String,
   genres: String,
   city: String,
   phone: String,
   facebook: String,
+  email: String,
+  image: String,
+  password: String,
   media: [{ type: ObjectId, ref: 'Media'}],
   favorites: [{ type: ObjectId, ref: 'User'}]
 }, {
@@ -25,3 +25,5 @@ const userSchema = new Schema({
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
+/* username, description, instruments, genres, city, facebook, phone, email, image */
