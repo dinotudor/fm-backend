@@ -11,6 +11,8 @@ const userSchema = new Schema({
   instruments: String,
   genres: String,
   city: String,
+  phone: String,
+  facebook: String,
   media: [{ type: ObjectId, ref: 'Media'}],
   favorites: [{ type: ObjectId, ref: 'User'}]
 }, {
