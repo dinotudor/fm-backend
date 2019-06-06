@@ -55,5 +55,17 @@ router.post('/', isLoggedIn(), (req, res, next) => {
     })
   })
 
+//DELETE '/delete-media'
+router.delete('/:delete-media', isLoggedIn(), (req,res,next) => {
+  //const { mediaId } = req.params;
+  const { _id } = req.session.currentUser;
+
+
+  User.findByIdAndUpdate(_id, { $pull: {media: _id } }, {new: true})
+    .then((data) => res.json(data))
+    .catch((err)=>console.log(err))
+
+})
+
 
 module.exports = router;
